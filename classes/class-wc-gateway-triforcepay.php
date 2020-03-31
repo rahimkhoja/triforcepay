@@ -75,7 +75,7 @@ class WC_Gateway_TriforcePay extends WC_Payment_Gateway {
                         if ( empty( self::$log ) ) {
                                 self::$log = new WC_Logger();
                         }
-                        self::$log->add( 'interpay', $message );
+                        self::$log->add( 'triforcepay', $message );
                 }
         }
 
