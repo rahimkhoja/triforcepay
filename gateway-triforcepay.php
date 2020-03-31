@@ -1,21 +1,25 @@
 <?php
 /**
- * Plugin Name: Triforce Media WooCommerce Interac® Online Payment Gateway
- * Description: Receive payments using the Canadian payments system Interac® Online.
- * Author: TriForce Media Inc. ( https://triforcemedia.com ) - Rahim Khoja ( rahim@khoja.ca )
- * Version: 0.0.5
- *
- * Copyright (c) 2017 TriForce Media Inc.
-*/
+ * @name          TriforcePay Interac® Online Payment Gateway Plugin for 
+ * 
+ * @description   Receive payments using the Canadian payments system Interac® Online.
+ * 
+ * @version        0.0.5
+ * @package        WooCommerce/Classes/Payment
+ * @developer     Rahim Khoja (rahim@khoja.ca) https://www.linkedin.com/in/rahim-khoja-879944139/
+ * @author        Triforce Media Inc. (sales@triforcemedia.com) https://triforcemedia.com
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
         exit;
 }
+
 
 /**
  * Initialize the gateway.
  * @since 1.0.0
  */
-function woocommerce_triforcepay_init() {
+function woocommerce_TriforcePay_init() {
         if ( ! class_exists( 'WC_Payment_Gateway' ) ) {
                 return;
         }
@@ -30,7 +34,7 @@ function woocommerce_triforcepay_plugin_links( $links ) {
                 array(
                         'page' => 'wc-settings',
                         'tab' => 'checkout',
-                        'section' => 'wc_gateway_triforcepay',
+                        'section' => 'WC_Gateway_TriforcePay',
                 ),
                 admin_url( 'admin.php' )
         );
@@ -49,6 +53,6 @@ add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'woocommerce_t
  * @since 1.0.0
  */
 function woocommerce_triforcepay_add_gateway( $methods ) {
-        $methods[] = 'WC_Gateway_triforcepay';
+        $methods[] = 'WC_Gateway_TriforcePay';
         return $methods;
 }
