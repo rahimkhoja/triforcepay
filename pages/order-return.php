@@ -1,6 +1,6 @@
 ﻿<?php
 /**
- * InterPay Interac® Online Return Page.
+ * TriforcePay Interac® Online Return Page.
  *
  * Is the return location from both successful and failed orders? Redirects page to the appropriate location.
  *
@@ -12,11 +12,11 @@
 /** Loads the WordPress Environment and Template */
 require_once $_SERVER['DOCUMENT_ROOT'] . '/wp-blog-header.php';
 
-error_log('Running InterPay Landing Page');
+error_log('Running TriforcePay Landing Page');
 
 $_User_ID = get_current_user_id();
 
-$_Interpay_Gateway = new WC_Gateway_InterPay();
+$_triforcepay_Gateway = new WC_Gateway_triforcepay();
 
 $_User_Secure_ID = $_GET['SecureID'];
 
@@ -38,7 +38,7 @@ if ( (isset( $_User_Secure_ID )) &&  (strlen( $_User_Secure_ID ) > 1 ) ) {
                 $_Order_Secure_ID = get_post_meta($_Current_Order_ID, 'sec_id', true);
                 if ( $_Order_Secure_ID == $_User_Secure_ID) {
                 error_log($_Interpay_Gateway->get_return_url( $_Current_Order_OBJ ),0);
-                        if ( wp_redirect( $_Interpay_Gateway->get_return_url( $_Current_Order_OBJ ) ) ) {
+                        if ( wp_redirect( $_triforcepay_Gateway->get_return_url( $_Current_Order_OBJ ) ) ) {
                                 exit;
                         }
                 }
@@ -51,7 +51,7 @@ if ( $_User_ID > 0) {
 } else {
         $_Redirect_URL = wc_get_page_permalink( 'cart' );
 }
-error_log('Failure Reirect: InterPay->OrderReturnPage: '.$_Redirect_URL,0);
+error_log('Failure Reirect: triforcepay->OrderReturnPage: '.$_Redirect_URL,0);
 // Redirect
 if ( wp_redirect( $_Redirect_URL ) ) {
         exit;
